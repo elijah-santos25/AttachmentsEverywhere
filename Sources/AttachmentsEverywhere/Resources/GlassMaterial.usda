@@ -1,0 +1,61 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (448.0.10.0.2)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["Glass", "Video_Dock"]
+    def Material "Glass"
+    {
+        token cullMode = "unspecified" (
+            allowedTokens = ["unspecified", "none", "front", "back"]
+        )
+        token outputs:mtlx:surface.connect = </Root/Glass/PreviewSurface.outputs:out>
+        token outputs:realitykit:vertex
+        float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (596.25, 154.5)
+        int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 161
+
+        def Shader "PreviewSurface"
+        {
+            uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+            float inputs:clearcoat = 0.1
+            float inputs:clearcoatRoughness = 1
+            color3f inputs:diffuseColor = (0.5, 0.5, 0.5) (
+                colorSpace = "srgb_displayp3"
+            )
+            color3f inputs:diffuseColor.connect = None
+            color3f inputs:emissiveColor
+            float inputs:ior = 1.5
+            float inputs:metallic = 0
+            float3 inputs:normal.connect = </Root/Glass/Fractal3D.outputs:out>
+            float inputs:occlusion = 1
+            float inputs:opacity = 0.65
+            float inputs:opacity.connect = None
+            float inputs:roughness = 1
+            token outputs:out
+            float2 ui:nodegraph:node:pos = (354.5, 154.5)
+            int ui:nodegraph:node:stackingOrder = 241
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["inputs:diffuseColor", "Advanced"]
+        }
+
+        def Shader "Fractal3D"
+        {
+            uniform token info:id = "ND_fractal3d_vector3"
+            float3 inputs:amplitude = (1, 1, 1)
+            float inputs:diminish = 2
+            float inputs:lacunarity
+            int inputs:octaves = 13
+            float3 inputs:position
+            float3 outputs:out
+            float2 ui:nodegraph:node:pos = (68.0625, 89.94531)
+            int ui:nodegraph:node:stackingOrder = 227
+        }
+    }
+}
+
