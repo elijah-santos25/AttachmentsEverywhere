@@ -5,7 +5,7 @@ Backports `RealityView`'s `init(make:update:attachments)` to non-visionOS platfo
 - Use as a standard SPM dependency
 - Import `AttachmentsEverywhere` in your code
 - Replace any `RealityView` that uses `init(make:update:attachments:)` with `AttachableRealityView`
-- Your code will probably (hopefully_ compile, though it may not function properly without tweaking
+- Your code will probably (hopefully) compile, though it may not function properly without tweaking
 
 ## Advanced Usage
 In order to approach the usability of attachments on visionOS, `AttachmentsEverywhere` provides some
