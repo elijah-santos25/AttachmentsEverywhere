@@ -34,7 +34,7 @@ public enum AttachmentContentBuilder {
     public static func buildPartialBlock(accumulated: AttachmentContent, next: AttachmentContent) -> AttachmentContent {
         var res = accumulated
         for (key, value) in next {
-            if next.contains(where: { $0.key == key }) {
+            if accumulated.contains(where: { $0.key == key }) {
                 print("[AttachmentsEverywhere] warning: duplicate key in attachment content: \(String(reflecting: key))")
             }
             res[key] = value
